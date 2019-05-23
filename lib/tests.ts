@@ -9,7 +9,7 @@ export class TestObjectInLocalStorage extends ObjectInBrowserStorage {
 		this._storageType = localStorage;
 	}
 
-	set key(v){}
+
 }
 
 

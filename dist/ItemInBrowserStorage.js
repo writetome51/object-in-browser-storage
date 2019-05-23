@@ -12,6 +12,7 @@ var has_value_no_value_1 = require("@writetome51/has-value-no-value");
 var ItemInBrowserStorage = /** @class */ (function () {
     function ItemInBrowserStorage(__key, value) {
         if (__key === void 0) { __key = ''; }
+        if (value === void 0) { value = undefined; }
         this.__key = __key;
         error_if_not_string_1.errorIfNotString(this.__key);
         if (is_empty_not_empty_1.notEmpty(this.__key))
@@ -30,6 +31,7 @@ var ItemInBrowserStorage = /** @class */ (function () {
     });
     // Saves `value` in storage.  Replaces previous value, if any.
     ItemInBrowserStorage.prototype.set = function (value) {
+        value = String(value);
         this._storageType.setItem(this.key, value);
     };
     ItemInBrowserStorage.prototype.get = function () {

@@ -1,12 +1,10 @@
-export declare abstract class ObjectInBrowserStorage {
-
-	key: string;
-	protected _storageType: Window['sessionStorage'] | Window['localStorage'];
-
-	private __key;
+import { ItemInBrowserStorage } from './ItemInBrowserStorage';
 
 
-	constructor(__key?: string, value?: Object | any[]);
+export declare abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
+
+
+	constructor(key?: string, value?: Object | any[]);
 
 
 	set(value: Object | any[]): void;
@@ -18,9 +16,5 @@ export declare abstract class ObjectInBrowserStorage {
 	modify(changes: Object | any[]): void;
 
 
-	remove(): void;
-
-
 	getAsJSON(): string;
-
 }

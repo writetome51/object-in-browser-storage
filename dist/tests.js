@@ -23,11 +23,6 @@ var TestObjectInLocalStorage = /** @class */ (function (_super) {
         _this._storageType = localStorage;
         return _this;
     }
-    Object.defineProperty(TestObjectInLocalStorage.prototype, "key", {
-        set: function (v) { },
-        enumerable: true,
-        configurable: true
-    });
     return TestObjectInLocalStorage;
 }(index_1.ObjectInBrowserStorage));
 exports.TestObjectInLocalStorage = TestObjectInLocalStorage;

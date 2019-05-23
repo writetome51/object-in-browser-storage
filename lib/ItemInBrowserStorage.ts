@@ -18,7 +18,7 @@ export abstract class ItemInBrowserStorage {
 
 	constructor(
 		private __key = '',
-		value: any
+		value = undefined
 	) {
 		errorIfNotString(this.__key);
 		if (notEmpty(this.__key)) this.set(value);
@@ -38,7 +38,8 @@ export abstract class ItemInBrowserStorage {
 
 	// Saves `value` in storage.  Replaces previous value, if any.
 
-	set(value: string): void {
+	set(value: any): void {
+		value = String(value);
 		this._storageType.setItem(this.key, value);
 	}
 

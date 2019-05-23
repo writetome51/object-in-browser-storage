@@ -1,8 +1,5 @@
-// import { errorIfNotStringWithLength } from 'error-if-not-string-with-length';
-import { errorIfNotString } from 'error-if-not-string';
 import { modifyObject } from '@writetome51/modify-object';
 import { getObjectFromJSON } from 'get-object-from-json';
-import { notEmpty } from '@writetome51/is-empty-not-empty';
 import { ItemInBrowserStorage } from './ItemInBrowserStorage';
 
 
