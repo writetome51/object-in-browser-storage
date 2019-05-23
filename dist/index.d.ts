@@ -1,4 +1,4 @@
-import { ItemInBrowserStorage } from './ItemInBrowserStorage';
+import { ItemInBrowserStorage } from "@writetome51/item-in-browser-storage";
 
 
 export declare abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {

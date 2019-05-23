@@ -4,7 +4,7 @@ import { ObjectInBrowserStorage } from './index';
 export class TestObjectInLocalStorage extends ObjectInBrowserStorage {
 
 	constructor(key = '', value: Object | any[] = {}) {
-		super(key = '', value);
+		super(key, value);
 
 		this._storageType = localStorage;
 	}

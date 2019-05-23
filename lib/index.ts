@@ -1,6 +1,6 @@
-import { modifyObject } from '@writetome51/modify-object';
 import { getObjectFromJSON } from 'get-object-from-json';
-import { ItemInBrowserStorage } from './ItemInBrowserStorage';
+import { ItemInBrowserStorage } from "@writetome51/item-in-browser-storage";
+import { modifyObject } from '@writetome51/modify-object';
 
 
 // Represents an object or array stored in the browser's localStorage or sessionStorage.

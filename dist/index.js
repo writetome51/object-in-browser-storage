@@ -13,9 +13,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var modify_object_1 = require("@writetome51/modify-object");
 var get_object_from_json_1 = require("get-object-from-json");
-var ItemInBrowserStorage_1 = require("./ItemInBrowserStorage");
+var item_in_browser_storage_1 = require("@writetome51/item-in-browser-storage");
+var modify_object_1 = require("@writetome51/modify-object");
 // Represents an object or array stored in the browser's localStorage or sessionStorage.
 // The item in storage is identified by a unique string `this.key`.
 // You can create a different class instance for each item you want to store.  Or you can
@@ -48,5 +48,5 @@ var ObjectInBrowserStorage = /** @class */ (function (_super) {
         return _super.prototype.get.call(this); // For this class, it's expected to return JSON string.
     };
     return ObjectInBrowserStorage;
-}(ItemInBrowserStorage_1.ItemInBrowserStorage));
+}(item_in_browser_storage_1.ItemInBrowserStorage));
 exports.ObjectInBrowserStorage = ObjectInBrowserStorage;

@@ -19,7 +19,7 @@ var TestObjectInLocalStorage = /** @class */ (function (_super) {
     function TestObjectInLocalStorage(key, value) {
         if (key === void 0) { key = ''; }
         if (value === void 0) { value = {}; }
-        var _this = _super.call(this, key = '', value) || this;
+        var _this = _super.call(this, key, value) || this;
         _this._storageType = localStorage;
         return _this;
     }

@@ -9,21 +9,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/writetome51/get-sum-from-property.git"
+    "url": "git+https://github.com/writetome51/object-in-browser-storage.git"
   },
   "keywords": [],
   "author": "Steve Thompson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/writetome51/get-sum-from-property/issues"
+    "url": "https://github.com/writetome51/object-in-browser-storage/issues"
   },
-  "homepage": "https://github.com/writetome51/get-sum-from-property#readme",
+  "homepage": "https://github.com/writetome51/object-in-browser-storage#readme",
   "devDependencies": {},
   "dependencies": {
     "@writetome51/has-value-no-value": "^1.0.2",
     "@writetome51/is-empty-not-empty": "^1.0.0",
     "@writetome51/modify-object": "^1.0.0",
-    "error-if-not-string": "^1.0.0",
+    "@writetome51/item-in-browser-storage": "^0.0.1",
     "get-object-from-json": "^1.0.3"
   }
 }
