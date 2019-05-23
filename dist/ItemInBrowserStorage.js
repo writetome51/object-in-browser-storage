@@ -40,13 +40,6 @@ var ItemInBrowserStorage = /** @class */ (function () {
         else
             throw new Error('Requested item either does not exist, or its value is null');
     };
-    // `getModifiedValue(value)` takes in the current value and returns a modified version that
-    // replaces the current value.
-    ItemInBrowserStorage.prototype.modify = function (getModifiedValue) {
-        var value = this.get();
-        value = getModifiedValue(value);
-        this.set(value);
-    };
     // After calling this.remove(), both the key and value are no longer in storage.
     // If you want to re-insert the key and value in storage later, you must call this.set(value)
     ItemInBrowserStorage.prototype.remove = function () {

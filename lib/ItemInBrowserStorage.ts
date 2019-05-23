@@ -53,16 +53,6 @@ export abstract class ItemInBrowserStorage {
 	}
 
 
-	// `getModifiedValue(value)` takes in the current value and returns a modified version that
-	// replaces the current value.
-
-	modify(getModifiedValue: (value) => any): void {
-		let value = this.get();
-		value = getModifiedValue(value);
-		this.set(value);
-	}
-
-
 	// After calling this.remove(), both the key and value are no longer in storage.
 	// If you want to re-insert the key and value in storage later, you must call this.set(value)
 

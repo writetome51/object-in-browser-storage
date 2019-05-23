@@ -15,7 +15,6 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var modify_object_1 = require("@writetome51/modify-object");
 var get_object_from_json_1 = require("get-object-from-json");
-var has_value_no_value_1 = require("@writetome51/has-value-no-value");
 var ItemInBrowserStorage_1 = require("./ItemInBrowserStorage");
 // Represents an object or array stored in the browser's localStorage or sessionStorage.
 // The item in storage is identified by a unique string `this.key`.
@@ -29,7 +28,7 @@ var ObjectInBrowserStorage = /** @class */ (function (_super) {
         if (value === void 0) { value = {}; }
         return _super.call(this, key, value) || this;
     }
-    // Saves `value` in storage.  Completely replaces previous value, if any.
+    // Saves `value` in storage.  Replaces previous value, if any.
     ObjectInBrowserStorage.prototype.set = function (value) {
         var json = JSON.stringify(value);
         _super.prototype.set.call(this, json);
@@ -44,18 +43,9 @@ var ObjectInBrowserStorage = /** @class */ (function (_super) {
         modify_object_1.modifyObject(obj, changes);
         this.set(obj);
     };
-    // After calling this.remove(), both the key and value are no longer in storage.
-    // If you want to re-insert the key and value in storage later, you must call this.set(value)
-    ObjectInBrowserStorage.prototype.remove = function () {
-        this._storageType.removeItem(this.key);
-    };
+    // It's likely you'll sometimes want to keep the object as JSON after retrieving it.
     ObjectInBrowserStorage.prototype.getAsJSON = function () {
-        // errorIfNotStringWithLength(this.key);
-        var json = this._storageType.getItem(this.key);
-        if (has_value_no_value_1.hasValue(json))
-            return json;
-        else
-            throw new Error('Requested item either does not exist, or its value is null');
+        return _super.prototype.get.call(this); // For this class, it's expected to return JSON string.
     };
     return ObjectInBrowserStorage;
 }(ItemInBrowserStorage_1.ItemInBrowserStorage));

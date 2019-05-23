@@ -3,7 +3,6 @@ import { errorIfNotString } from 'error-if-not-string';
 import { modifyObject } from '@writetome51/modify-object';
 import { getObjectFromJSON } from 'get-object-from-json';
 import { notEmpty } from '@writetome51/is-empty-not-empty';
-import { hasValue } from '@writetome51/has-value-no-value';
 import { ItemInBrowserStorage } from './ItemInBrowserStorage';
 
 
@@ -24,7 +23,7 @@ export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 	}
 
 
-	// Saves `value` in storage.  Completely replaces previous value, if any.
+	// Saves `value` in storage.  Replaces previous value, if any.
 
 	set(value: Object | any[]): void {
 		let json = JSON.stringify(value);
@@ -47,21 +46,10 @@ export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 	}
 
 
-	// After calling this.remove(), both the key and value are no longer in storage.
-	// If you want to re-insert the key and value in storage later, you must call this.set(value)
-
-	remove(): void {
-		this._storageType.removeItem(this.key);
-	}
-
+	// It's likely you'll sometimes want to keep the object as JSON after retrieving it.
 
 	getAsJSON(): string {
-		// errorIfNotStringWithLength(this.key);
-		let json = this._storageType.getItem(this.key);
-
-		if (hasValue(json)) return json;
-
-		else throw new Error('Requested item either does not exist, or its value is null');
+		return super.get(); // For this class, it's expected to return JSON string.
 	}
 
 
