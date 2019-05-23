@@ -1,0 +1,62 @@
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var modify_object_1 = require("@writetome51/modify-object");
+var get_object_from_json_1 = require("get-object-from-json");
+var has_value_no_value_1 = require("@writetome51/has-value-no-value");
+var ItemInBrowserStorage_1 = require("./ItemInBrowserStorage");
+// Represents an object or array stored in the browser's localStorage or sessionStorage.
+// The item in storage is identified by a unique string `this.key`.
+// You can create a different class instance for each item you want to store.  Or you can
+// create a single instance and simply change the value of `this.key` when you want to create/access
+// a different item.
+var ObjectInBrowserStorage = /** @class */ (function (_super) {
+    __extends(ObjectInBrowserStorage, _super);
+    function ObjectInBrowserStorage(key, value) {
+        if (key === void 0) { key = ''; }
+        if (value === void 0) { value = {}; }
+        return _super.call(this, key, value) || this;
+    }
+    // Saves `value` in storage.  Completely replaces previous value, if any.
+    ObjectInBrowserStorage.prototype.set = function (value) {
+        var json = JSON.stringify(value);
+        _super.prototype.set.call(this, json);
+    };
+    ObjectInBrowserStorage.prototype.get = function () {
+        var json = this.getAsJSON();
+        return get_object_from_json_1.getObjectFromJSON(json);
+    };
+    // `changes` does not completely replace the current value.  It is merged into the current value.
+    ObjectInBrowserStorage.prototype.modify = function (changes) {
+        var obj = this.get();
+        modify_object_1.modifyObject(obj, changes);
+        this.set(obj);
+    };
+    // After calling this.remove(), both the key and value are no longer in storage.
+    // If you want to re-insert the key and value in storage later, you must call this.set(value)
+    ObjectInBrowserStorage.prototype.remove = function () {
+        this._storageType.removeItem(this.key);
+    };
+    ObjectInBrowserStorage.prototype.getAsJSON = function () {
+        // errorIfNotStringWithLength(this.key);
+        var json = this._storageType.getItem(this.key);
+        if (has_value_no_value_1.hasValue(json))
+            return json;
+        else
+            throw new Error('Requested item either does not exist, or its value is null');
+    };
+    return ObjectInBrowserStorage;
+}(ItemInBrowserStorage_1.ItemInBrowserStorage));
+exports.ObjectInBrowserStorage = ObjectInBrowserStorage;
