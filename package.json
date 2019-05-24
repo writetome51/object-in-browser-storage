@@ -1,6 +1,6 @@
 {
   "name": "@writetome51/object-in-browser-storage",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "An abstract TypeScript/JavaScript class representing an object or array stored in the browser's localStorage or sessionStorage",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

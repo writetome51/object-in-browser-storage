@@ -4,7 +4,9 @@ import { ItemInBrowserStorage } from "@writetome51/item-in-browser-storage";
 import { modifyObject } from '@writetome51/modify-object';
 
 
-// Represents an object or array stored in the browser's localStorage or sessionStorage.
+// Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
+// The choice of `localStorage` or `sessionStorage` must be decided by a subclass using
+// `this._storageType`.
 // The item in storage is identified by a unique string `this.key`.
 
 export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {

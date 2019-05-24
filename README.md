@@ -1,11 +1,10 @@
 # ObjectInBrowserStorage
 
 An abstract TypeScript/JavaScript class representing an object or array  
-stored in the browser's `localStorage` or `sessionStorage`. The item in  
-storage is identified by a unique string `this.key` and is stored as a  
-key/value pair. You can create a different class instance for each item  
-you want to store. Or you can create a single instance and simply change  
-the value of `this.key` when you want to create/access a different item.
+stored in the browser's `localStorage` or `sessionStorage`. The choice  
+of `localStorage` or `sessionStorage` must be decided by a subclass using  
+`this._storageType`. The item in storage is identified by a unique string  
+`this.key`.
 
 Note: this only works when run in a browser environment.
 
@@ -29,10 +28,9 @@ constructor(
 ```ts
 key: string // the unique ID for the stored object or array.
 
-protected  _storageType: Window['sessionStorage'] | Window['localStorage'];
-    // When assigning the value, there's no need to mention Window.
-    // Example:
-    // this._storageType = sessionStorage;
+protected  _storageType: sessionStorage | localStorage
+    
+className: string // read-only
 ```
 </details>
 
@@ -43,7 +41,7 @@ protected  _storageType: Window['sessionStorage'] | Window['localStorage'];
 
 ```ts
 set(value: Object | any[]): void
-    // Saves `value` in storage.  Replaces previous value, if any.
+    // Saves item `value` in storage.  Replaces previous value, if any.
 
 get(): Object | any[]
     // Returns the stored object or array.
@@ -55,15 +53,79 @@ modify(changes: Object | any[]): void
     // `changes` does not replace the current value.  It is merged into the current value.
 
 remove(): void
-    // Removes the key/value pair from storage.  If you want to re-insert 
-    // the key and value in storage later, you must call this.set(value)
+    // After calling this, both the key and value are no longer in
+    // storage.  You can store the item again by calling this.set(value)
+```
+The methods below are not important to know about in order to use this  
+class.  They're inherited from [BaseClass](https://github.com/writetome51/typescript-base-class#baseclass) .
+```
+protected   _createGetterAndOrSetterForEach(
+		propertyNames: string[],
+		configuration: IGetterSetterConfiguration
+	   ) : void
+    /*********************
+    Use this method when you have a bunch of properties that need getter and/or 
+    setter functions that all do the same thing. You pass in an array of string 
+    names of those properties, and the method attaches the same getter and/or 
+    setter function to each property.
+    IGetterSetterConfiguration is this object:
+    {
+        get_setterFunction?: (
+             propertyName: string, index?: number, propertyNames?: string[]
+        ) => Function,
+	    // get_setterFunction takes the property name as first argument and 
+	    // returns the setter function.  The setter function must take one 
+	    // parameter and return void.
+	    
+        get_getterFunction?: (
+             propertyName: string, index?: number, propertyNames?: string[]
+        ) => Function
+	    // get_getterFunction takes the property name as first argument and 
+	    // returns the getter function.  The getter function must return something.
+    }
+    *********************/ 
+	   
+	   
+protected   _returnThis_after(voidExpression: any) : this
+    // voidExpression is executed, then function returns this.
+    // Even if voidExpression returns something, the returned data isn't used.
+
+
+protected   _errorIfPropertyHasNoValue(
+                property: string, // can contain dot-notation, i.e., 'property.subproperty'
+                propertyNameInError? = ''
+            ) : void
+    // If value of this[property] is undefined or null, it triggers fatal error:
+    // `The property "${propertyNameInError}" has no value.`
 ```
 </details>
 
 
+## Usage Example
+<details>
+
+```
+export class ObjectInLocalStorage extends ObjectInBrowserStorage {
+
+    constructor(
+        key = '',
+        value: Object | any[] = {}
+    ) {
+        super(key);
+		
+        this._storageType = localStorage;
+        if ((this.key !== '') && (value !== undefined)) this.set(value);
+    }
+
+}
+```
+</details>
+
+
+
 ## Inheritance Chain
 
-ObjectInBrowserStorage<--[ItemInBrowserStorage](https://github.com/writetome51/item-in-browser-storage#iteminbrowserstorage)
+ObjectInBrowserStorage<--[ItemInBrowserStorage](https://github.com/writetome51/item-in-browser-storage#iteminbrowserstorage)<--[BaseClass](https://github.com/writetome51/typescript-base-class#baseclass)
 
 
 ## Installation

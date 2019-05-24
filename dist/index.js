@@ -17,7 +17,9 @@ var error_if_not_object_1 = require("error-if-not-object");
 var get_object_from_json_1 = require("get-object-from-json");
 var item_in_browser_storage_1 = require("@writetome51/item-in-browser-storage");
 var modify_object_1 = require("@writetome51/modify-object");
-// Represents an object or array stored in the browser's localStorage or sessionStorage.
+// Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
+// The choice of `localStorage` or `sessionStorage` must be decided by a subclass using
+// `this._storageType`.
 // The item in storage is identified by a unique string `this.key`.
 var ObjectInBrowserStorage = /** @class */ (function (_super) {
     __extends(ObjectInBrowserStorage, _super);
