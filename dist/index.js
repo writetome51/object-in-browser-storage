@@ -19,15 +19,10 @@ var item_in_browser_storage_1 = require("@writetome51/item-in-browser-storage");
 var modify_object_1 = require("@writetome51/modify-object");
 // Represents an object or array stored in the browser's localStorage or sessionStorage.
 // The item in storage is identified by a unique string `this.key`.
-// You can create a different class instance for each item you want to store.  Or you can
-// create a single instance and simply change the value of `this.key` when you want to 
-// create/access a different item.
 var ObjectInBrowserStorage = /** @class */ (function (_super) {
     __extends(ObjectInBrowserStorage, _super);
-    function ObjectInBrowserStorage(key, value) {
-        if (key === void 0) { key = ''; }
-        if (value === void 0) { value = undefined; }
-        return _super.call(this, key, value) || this;
+    function ObjectInBrowserStorage() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     // Saves `value` in storage.  Replaces previous value, if any.
     ObjectInBrowserStorage.prototype.set = function (value) {

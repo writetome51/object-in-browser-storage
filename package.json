@@ -20,7 +20,7 @@
   "homepage": "https://github.com/writetome51/object-in-browser-storage#readme",
   "devDependencies": {},
   "dependencies": {
-    "@writetome51/item-in-browser-storage": "^0.0.1",
+    "@writetome51/item-in-browser-storage": "^1.0.0",
     "@writetome51/modify-object": "^1.0.0",
     "get-object-from-json": "^1.0.3",
     "error-if-not-object": "^1.0.0"
