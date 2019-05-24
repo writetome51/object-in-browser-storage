@@ -58,7 +58,7 @@ remove(): void
 ```
 The methods below are not important to know about in order to use this  
 class.  They're inherited from [BaseClass](https://github.com/writetome51/typescript-base-class#baseclass) .
-```
+```ts
 protected   _createGetterAndOrSetterForEach(
 		propertyNames: string[],
 		configuration: IGetterSetterConfiguration
@@ -103,8 +103,9 @@ protected   _errorIfPropertyHasNoValue(
 
 ## Usage Example
 <details>
+<summary>view example</summary>
 
-```
+```ts
 export class ObjectInLocalStorage extends ObjectInBrowserStorage {
 
     constructor(
