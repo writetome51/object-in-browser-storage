@@ -22,6 +22,7 @@
   "dependencies": {
     "@writetome51/item-in-browser-storage": "^0.0.1",
     "@writetome51/modify-object": "^1.0.0",
-    "get-object-from-json": "^1.0.3"
+    "get-object-from-json": "^1.0.3",
+    "error-if-not-object": "^1.0.0"
   }
 }
