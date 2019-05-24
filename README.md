@@ -65,6 +65,11 @@ remove(): void
 </details>
 
 
+## Inheritance Chain
+
+ObjectInBrowserStorage<--[ItemInBrowserStorage](https://github.com/writetome51/item-in-browser-storage#iteminbrowserstorage)
+
+
 ## Installation
 
 ```bash
