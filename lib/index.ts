@@ -58,3 +58,6 @@ export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 
 
 }
+
+
+
