@@ -1,10 +1,10 @@
 # ObjectInBrowserStorage
 
 An abstract TypeScript/JavaScript class representing an object or array  
-stored in the browser's `localStorage` or `sessionStorage`. The choice  
-of `localStorage` or `sessionStorage` must be decided by a subclass using  
-`this._storageType`. The item in storage is identified by a unique string  
-`this.key`.
+stored in the browser's `localStorage` or `sessionStorage`. The choice of  
+`localStorage` or `sessionStorage` must be decided by a subclass using  
+the `storageType` argument in the constructor. The item in storage is  
+identified by a unique string `this.key`.
 
 Note: this only works when run in a browser environment.
 
@@ -15,8 +15,16 @@ Note: this only works when run in a browser environment.
 
 ```ts
 constructor(
-    key? = ''  // gets assigned to this.key
+    storageType: sessionStorage | localStorage,
+        // assigned to this._storageType
+
+    key? = '',
+        // assigned to this.key
+
+    value?: Object | any[]  = undefined
 )
+    // If `key` is not an empty string and `value` is not undefined or null, 
+    // the item is stored immediately.
 ```
 </details>
 
@@ -110,12 +118,9 @@ export class ObjectInLocalStorage extends ObjectInBrowserStorage {
 
     constructor(
         key = '',
-        value: Object | any[] = {}
+        value: Object | any[] = undefined
     ) {
-        super(key);
-		
-        this._storageType = localStorage;
-        if ((this.key !== '') && (value !== undefined)) this.set(value);
+        super(localStorage, key, value);
     }
 
 }
