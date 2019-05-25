@@ -18,13 +18,13 @@ var get_object_from_json_1 = require("get-object-from-json");
 var item_in_browser_storage_1 = require("@writetome51/item-in-browser-storage");
 var modify_object_1 = require("@writetome51/modify-object");
 /*******************************
-This class' difference from its parent:
+ This class' difference from its parent:
 
-Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
-Overrides `this.set()` and `this.get()` to specifically handle an object or array.
+ Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
+ Overrides `this.set()` and `this.get()` to specifically handle an object or array.
 
-Adds methods `this.getAsJSON()` and `this.modify()`.
-*******************************/
+ Adds methods `this.getAsJSON()` and `this.modify()`.
+ *******************************/
 var ObjectInBrowserStorage = /** @class */ (function (_super) {
     __extends(ObjectInBrowserStorage, _super);
     function ObjectInBrowserStorage(storageType, key, value) {

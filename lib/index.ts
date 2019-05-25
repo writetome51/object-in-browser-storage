@@ -3,14 +3,15 @@ import { getObjectFromJSON } from 'get-object-from-json';
 import { ItemInBrowserStorage } from "@writetome51/item-in-browser-storage";
 import { modifyObject } from '@writetome51/modify-object';
 
+
 /*******************************
-This class' difference from its parent:
+ This class' difference from its parent:
 
-Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
-Overrides `this.set()` and `this.get()` to specifically handle an object or array.
+ Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
+ Overrides `this.set()` and `this.get()` to specifically handle an object or array.
 
-Adds methods `this.getAsJSON()` and `this.modify()`.
-*******************************/
+ Adds methods `this.getAsJSON()` and `this.modify()`.
+ *******************************/
 
 export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 
