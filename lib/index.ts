@@ -1,15 +1,16 @@
 import { errorIfNotObject } from 'error-if-not-object';
 import { getObjectFromJSON } from 'get-object-from-json';
-import { hasValue } from "@writetome51/has-value-no-value";
 import { ItemInBrowserStorage } from "@writetome51/item-in-browser-storage";
 import { modifyObject } from '@writetome51/modify-object';
-import { notEmpty } from "@writetome51/is-empty-not-empty";
 
+/*******************************
+This class' difference from its parent:
 
-// Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
-// The choice of `localStorage` or `sessionStorage` must be decided by a subclass using
-// the `storageType` argument in the constructor.
-// The item in storage is identified by a unique string `this.key`.
+Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
+Overrides `this.set()` and `this.get()` to specifically handle an object or array.
+
+Adds methods `this.getAsJSON()` and `this.modify()`.
+*******************************/
 
 export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 
@@ -19,10 +20,7 @@ export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 		key = '',
 		value: Object | any[] = undefined
 	) {
-		super(key);
-		this._storageType = storageType;
-
-		if (notEmpty(this.key) && hasValue(value)) this.set(value);
+		super(storageType, key, value);
 	}
 
 
@@ -58,6 +56,3 @@ export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 
 
 }
-
-
-
