@@ -15,24 +15,22 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var error_if_not_object_1 = require("error-if-not-object");
 var get_object_from_json_1 = require("get-object-from-json");
-var has_value_no_value_1 = require("@writetome51/has-value-no-value");
 var item_in_browser_storage_1 = require("@writetome51/item-in-browser-storage");
 var modify_object_1 = require("@writetome51/modify-object");
-var is_empty_not_empty_1 = require("@writetome51/is-empty-not-empty");
-// Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
-// The choice of `localStorage` or `sessionStorage` must be decided by a subclass using
-// the `storageType` argument in the constructor.
-// The item in storage is identified by a unique string `this.key`.
+/*******************************
+This class' difference from its parent:
+
+Represents an object or array stored in the browser's `localStorage` or `sessionStorage`.
+Overrides `this.set()` and `this.get()` to specifically handle an object or array.
+
+Adds methods `this.getAsJSON()` and `this.modify()`.
+*******************************/
 var ObjectInBrowserStorage = /** @class */ (function (_super) {
     __extends(ObjectInBrowserStorage, _super);
     function ObjectInBrowserStorage(storageType, key, value) {
         if (key === void 0) { key = ''; }
         if (value === void 0) { value = undefined; }
-        var _this = _super.call(this, key) || this;
-        _this._storageType = storageType;
-        if (is_empty_not_empty_1.notEmpty(_this.key) && has_value_no_value_1.hasValue(value))
-            _this.set(value);
-        return _this;
+        return _super.call(this, storageType, key, value) || this;
     }
     // Saves `value` in storage.  Replaces previous value, if any.
     ObjectInBrowserStorage.prototype.set = function (value) {
