@@ -3,8 +3,12 @@
 An abstract TypeScript/JavaScript class representing an object or array  
 stored in the browser's `localStorage` or `sessionStorage`. The choice of  
 `localStorage` or `sessionStorage` must be decided by a subclass using  
-the `storageType` argument in the constructor. The item in storage is  
-identified by a unique string `this.key`.
+the `storageType` argument in the constructor. The stored object/array is  
+identified by a unique string `this.key` and stored as a `key:value` pair.  
+When you call the constructor, if the `key` argument is a string that  
+isn't empty and the `value` argument is not undefined or null, the item  
+will be stored immediately. Else, the item won't be stored until you call  
+`this.set()`.
 
 Note: this only works when run in a browser environment.
 
@@ -16,15 +20,14 @@ Note: this only works when run in a browser environment.
 ```ts
 constructor(
     storageType: sessionStorage | localStorage,
-        // assigned to this._storageType
 
     key? = '',
         // assigned to this.key
 
     value?: Object | any[]  = undefined
 )
-    // If `key` is not an empty string and `value` is not undefined or null, 
-    // the item is stored immediately.
+    // If `key` is not an empty string and `value` is defined, the item is 
+    // stored immediately.
 ```
 </details>
 
@@ -34,9 +37,7 @@ constructor(
 <summary>view properties</summary>
 
 ```ts
-key: string // the unique ID for the stored object or array.
-
-protected  _storageType: sessionStorage | localStorage
+key: string // the unique ID needed to access the stored object/array.
     
 className: string // read-only
 ```
@@ -124,6 +125,22 @@ export class ObjectInLocalStorage extends ObjectInBrowserStorage {
     }
 
 }
+
+let storedUser = new ObjectInLocalStorage(
+    'user_1',
+    {username: 'jimbowie2000', password:'!@#$%^'}
+);
+
+// Later...
+storedUser.modify({username:'davidbowie2000'});
+
+// Later...
+access_something_requiring_user_password(
+    storedUser.get().password
+);
+
+// Later...
+storedUser.remove();
 ```
 </details>
 

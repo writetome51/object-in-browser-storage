@@ -16,15 +16,6 @@ import { modifyObject } from '@writetome51/modify-object';
 export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 
 
-	constructor(
-		storageType: Window['sessionStorage'] | Window['localStorage'],
-		key = '',
-		value: Object | any[] = undefined
-	) {
-		super(storageType, key, value);
-	}
-
-
 	// Saves `value` in storage.  Replaces previous value, if any.
 
 	set(value: Object | any[]): void {

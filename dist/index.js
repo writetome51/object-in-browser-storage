@@ -27,10 +27,8 @@ var modify_object_1 = require("@writetome51/modify-object");
  *******************************/
 var ObjectInBrowserStorage = /** @class */ (function (_super) {
     __extends(ObjectInBrowserStorage, _super);
-    function ObjectInBrowserStorage(storageType, key, value) {
-        if (key === void 0) { key = ''; }
-        if (value === void 0) { value = undefined; }
-        return _super.call(this, storageType, key, value) || this;
+    function ObjectInBrowserStorage() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     // Saves `value` in storage.  Replaces previous value, if any.
     ObjectInBrowserStorage.prototype.set = function (value) {
