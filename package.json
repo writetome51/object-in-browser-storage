@@ -1,6 +1,6 @@
 {
   "name": "@writetome51/object-in-browser-storage",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "An abstract TypeScript/JavaScript class representing an object or array stored in the browser's localStorage or sessionStorage",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -28,6 +28,7 @@
   "homepage": "https://github.com/writetome51/object-in-browser-storage#readme",
   "devDependencies": {},
   "dependencies": {
+    "@writetome51/has-value-no-value": "^1.0.2",
     "@writetome51/item-in-browser-storage": "^2.0.0",
     "@writetome51/modify-object": "^1.0.0",
     "error-if-not-object": "^1.0.0",

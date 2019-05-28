@@ -2,6 +2,7 @@ import { errorIfNotObject } from 'error-if-not-object';
 import { getObjectFromJSON } from 'get-object-from-json';
 import { ItemInBrowserStorage } from "@writetome51/item-in-browser-storage";
 import { modifyObject } from '@writetome51/modify-object';
+import { hasValue, noValue } from '@writetome51/has-value-no-value';
 
 
 /*******************************
@@ -27,7 +28,8 @@ export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 
 	get(): Object | any[] {
 		let json = this.getAsJSON();
-		return getObjectFromJSON(json);
+		if (hasValue(json)) return getObjectFromJSON(json);
+		else return;
 	}
 
 
@@ -42,6 +44,7 @@ export abstract class ObjectInBrowserStorage extends ItemInBrowserStorage {
 
 	modify(changes: Object | any[]): void {
 		let obj = this.get();
+		if (noValue(obj)) throw new Error(`Item not found in storage`);
 		modifyObject(obj, changes);
 		this.set(obj);
 	}

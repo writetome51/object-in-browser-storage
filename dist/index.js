@@ -17,6 +17,7 @@ var error_if_not_object_1 = require("error-if-not-object");
 var get_object_from_json_1 = require("get-object-from-json");
 var item_in_browser_storage_1 = require("@writetome51/item-in-browser-storage");
 var modify_object_1 = require("@writetome51/modify-object");
+var has_value_no_value_1 = require("@writetome51/has-value-no-value");
 /*******************************
  This class' difference from its parent:
 
@@ -38,7 +39,10 @@ var ObjectInBrowserStorage = /** @class */ (function (_super) {
     };
     ObjectInBrowserStorage.prototype.get = function () {
         var json = this.getAsJSON();
-        return get_object_from_json_1.getObjectFromJSON(json);
+        if (has_value_no_value_1.hasValue(json))
+            return get_object_from_json_1.getObjectFromJSON(json);
+        else
+            return;
     };
     // It's likely you'll sometimes want to keep the object as JSON after retrieving it.
     ObjectInBrowserStorage.prototype.getAsJSON = function () {
@@ -47,6 +51,8 @@ var ObjectInBrowserStorage = /** @class */ (function (_super) {
     // `changes` does not replace the current value.  It is merged into the current value.
     ObjectInBrowserStorage.prototype.modify = function (changes) {
         var obj = this.get();
+        if (has_value_no_value_1.noValue(obj))
+            throw new Error("Item not found in storage");
         modify_object_1.modifyObject(obj, changes);
         this.set(obj);
     };
