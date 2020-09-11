@@ -16,7 +16,6 @@ import {noValue} from '@writetome51/has-value-no-value';
 
 export class ObjectInBrowserStorage extends ItemInBrowserStorage {
 
-
 	// Saves `value` in storage.  Replaces previous value, if any.
 
 	set(value) {
@@ -34,8 +33,10 @@ export class ObjectInBrowserStorage extends ItemInBrowserStorage {
 
 	getAsJSON() {
 		let json = super.get(); // For this class, it's expected to return JSON string.
-		if (noValue(json)) throw new Error(`Item not found in storage`);
-		else return json;
+		if (noValue(json))
+			throw new Error(`Item not found in storage`);
+		else
+			return json;
 	}
 
 
